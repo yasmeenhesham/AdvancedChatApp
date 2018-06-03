@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/req_decline"
+        android:layout_width="70dp"
+        android:layout_height="34dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="18dp"
+        android:background="@color/colorAccent"
+        android:text="Decline"
+        android:textSize="10sp" />
+
+    <ImageView
+        android:id="@+id/req_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/req_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="25dp"
+        android:text="Display Name"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+a
+    <TextView
+        android:id="@+id/req_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/req_name"
+        android:layout_marginTop="50dp"
+        android:text="Default User Status"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/req_accept"
+        android:layout_width="70dp"
+        android:layout_height="34dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="109dp"
+        android:background="@color/colorPrimary"
+        android:text="Accept"
+        android:textColor="@android:color/background_light"
+        android:textSize="10sp" />
+
+
+</RelativeLayout>

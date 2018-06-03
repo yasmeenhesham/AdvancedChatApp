@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "870266525980",
+    "firebase_url": "https://advancedchatapp-13b83.firebaseio.com",
+    "project_id": "advancedchatapp-13b83",
+    "storage_bucket": "advancedchatapp-13b83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870266525980:android:a831ac60ff3766e6",
+        "android_client_info": {
+          "package_name": "com.example.yasmeen.advancedchatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870266525980-46758v43l0ihhh46u8k5g5849lf78p7b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yasmeen.advancedchatapp",
+            "certificate_hash": "6f8394de640879470b0aff865831e80148ce444f"
+          }
+        },
+        {
+          "client_id": "870266525980-t59rffpoe416ppmqn7d4ij6mla6v7drn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ5nubPUJfovpqOfmruPyxr_-SjSBXWR4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870266525980-t59rffpoe416ppmqn7d4ij6mla6v7drn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

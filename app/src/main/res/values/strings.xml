@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Advanced Chat App</string>
+    <string name="register_button">Need A new Account</string>
+    <string name="user_name">User name</string>
+    <string name="create_an_account">Create An Account</string>
+    <string name="create_account">Create Account</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="log_out">Log out</string>
+    <string name="all_users">All Users</string>
+    <string name="account_setting">Account Setting</string>
+    <string name="login">Login</string>
+    <string name="logging_in">Logging in</string>
+    <string name="please_wait">Please wait</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_status">Hi there , iam using dvanced chat App</string>
+</resources>
