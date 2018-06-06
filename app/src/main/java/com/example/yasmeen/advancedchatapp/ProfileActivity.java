@@ -90,55 +90,55 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });*/
-       mDatabaseRefFriendsReq.child(currrent_user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-           @Override
-           public void onDataChange(DataSnapshot dataSnapshot) {
-               if(dataSnapshot.hasChild(y.getUid()))
-               {
-                   String req_type =dataSnapshot.child(y.getUid()).child("request_type").getValue().toString();
-                   if(req_type.equals("recieved"))
-                   {
-                       friend_state="req_received";
-                       mFriendRequestBtn.setText("Accept Friend Request");
-                       mDeclineBtn.setVisibility(View.VISIBLE);
-                       mDeclineBtn.setEnabled(true);
-                   }
-                   else if(req_type.equals("sent"))
-                   {
-                       friend_state="req_sent";
-                       mFriendRequestBtn.setText("Cancle Friend Request");
-                       mDeclineBtn.setVisibility(View.INVISIBLE);
-                       mDeclineBtn.setEnabled(false);
-                   }
-               }
-               else {
-                   mDatabaseReferenceFriends.child(currrent_user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                       @Override
-                       public void onDataChange(DataSnapshot dataSnapshot1) {
+        mDatabaseRefFriendsReq.child(currrent_user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(y.getUid()))
+                {
+                    String req_type =dataSnapshot.child(y.getUid()).child("request_type").getValue().toString();
+                    if(req_type.equals("recieved"))
+                    {
+                        friend_state="req_received";
+                        mFriendRequestBtn.setText(R.string.accept_friend_request);
+                        mDeclineBtn.setVisibility(View.VISIBLE);
+                        mDeclineBtn.setEnabled(true);
+                    }
+                    else if(req_type.equals("sent"))
+                    {
+                        friend_state="req_sent";
+                        mFriendRequestBtn.setText(R.string.cancle_friend_request);
+                        mDeclineBtn.setVisibility(View.INVISIBLE);
+                        mDeclineBtn.setEnabled(false);
+                    }
+                }
+                else {
+                    mDatabaseReferenceFriends.child(currrent_user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot1) {
 
-                           if(dataSnapshot1.hasChild(y.getUid()))
-                           {
-                               mFriendRequestBtn.setEnabled(true);
-                               friend_state="friends";
-                               mFriendRequestBtn.setText("Unfriend");
-                               mDeclineBtn.setVisibility(View.INVISIBLE);
-                               mDeclineBtn.setEnabled(false);
-                           }
-                       }
+                            if(dataSnapshot1.hasChild(y.getUid()))
+                            {
+                                mFriendRequestBtn.setEnabled(true);
+                                friend_state="friends";
+                                mFriendRequestBtn.setText(R.string.unfriend);
+                                mDeclineBtn.setVisibility(View.INVISIBLE);
+                                mDeclineBtn.setEnabled(false);
+                            }
+                        }
 
-                       @Override
-                       public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                       }
-                   });
-               }
-           }
+                        }
+                    });
+                }
+            }
 
-           @Override
-           public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-           }
-       });
+            }
+        });
         mFriendRequestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,7 +173,7 @@ public class ProfileActivity extends AppCompatActivity {
                             }
                             friend_state ="req_sent";
                             mFriendRequestBtn.setEnabled(true);
-                            mFriendRequestBtn.setText("Cancel Friend Request");
+                            mFriendRequestBtn.setText(R.string.cancel_friend_request);
 
                         }
                     });
@@ -227,7 +227,7 @@ public class ProfileActivity extends AppCompatActivity {
                             {
                                 mFriendRequestBtn.setEnabled(true);
                                 friend_state="not_friends";
-                                mFriendRequestBtn.setText("Send Friend Request");
+                                mFriendRequestBtn.setText(R.string.send_friend_request);
                                 mDeclineBtn.setVisibility(View.INVISIBLE);
                                 mDeclineBtn.setEnabled(false);
                             }
@@ -242,7 +242,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 public void onSuccess(Void aVoid) {
                                     mFriendRequestBtn.setEnabled(true);
                                     friend_state="not_friends";
-                                    mFriendRequestBtn.setText("Send Friend Request");
+                                    mFriendRequestBtn.setText(R.string.send_friend_request);
                                     mDeclineBtn.setVisibility(View.INVISIBLE);
                                     mDeclineBtn.setEnabled(false);
                                 }
@@ -265,7 +265,7 @@ public class ProfileActivity extends AppCompatActivity {
                             {
                                 mFriendRequestBtn.setEnabled(true);
                                 friend_state="friends";
-                                mFriendRequestBtn.setText("Unfriend");
+                                mFriendRequestBtn.setText(R.string.unfriend);
                                 mDeclineBtn.setVisibility(View.INVISIBLE);
                                 mDeclineBtn.setEnabled(false);
                             }
@@ -310,7 +310,7 @@ public class ProfileActivity extends AppCompatActivity {
                             {
                                 mFriendRequestBtn.setEnabled(true);
                                 friend_state="not_friends";
-                                mFriendRequestBtn.setText("Send Friend Request");
+                                mFriendRequestBtn.setText(R.string.send_friend_request);
                                 mDeclineBtn.setVisibility(View.INVISIBLE);
                                 mDeclineBtn.setEnabled(false);
                             }

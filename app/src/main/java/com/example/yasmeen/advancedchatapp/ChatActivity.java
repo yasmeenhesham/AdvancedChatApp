@@ -106,11 +106,11 @@ public class ChatActivity extends AppCompatActivity {
                 String online = dataSnapshot.child("online").getValue().toString();
                 if(online.equals("true"))
                 {
-                    custom_barLast.setText("online");
+                    custom_barLast.setText(R.string.online);
                 }
                 else
                 {
-                   // String time = dataSnapshot.child("lastSeen").toString()
+                    // String time = dataSnapshot.child("lastSeen").toString()
                     GetTimeAgo getTimeAgo = new GetTimeAgo();
                     long timeactive =Long.parseLong(dataSnapshot.child("lastSeen").getValue().toString());
                     String ago = getTimeAgo.getTimeAgo(timeactive,getApplicationContext());
@@ -254,7 +254,7 @@ public class ChatActivity extends AppCompatActivity {
                 item_Positin++;
                 if(!mPrevKey.equals(messageKey)) {
                     {
-                            all_messages.add(m);
+                        all_messages.add(m);
                     }
                 } else {
                     mPrevKey =messageKey;

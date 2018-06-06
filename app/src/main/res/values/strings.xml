@@ -30,7 +30,6 @@
     <string name="decline">Decline</string>
     <string name="accept">Accept</string>
     <string name="enter_message">Enter Message</string>
-    <string name="send_friend_request">Send Friend Request</string>
     <string name="decline_friend_request">Decline Friend Request</string>
     <string name="your_email">Your Email</string>
     <string name="login">Login</string>
@@ -53,4 +52,10 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="friends_requests_name">Friends Requests Name</string>
+    <string name="accept_friend_request">Accept Friend Request</string>
+    <string name="cancle_friend_request">Cancle Friend Request</string>
+    <string name="unfriend">Unfriend</string>
+    <string name="send_friend_request">Send Friend Request</string>
+    <string name="cancel_friend_request">Cancel Friend Request</string>
+    <string name="online">online</string>
 </resources>
