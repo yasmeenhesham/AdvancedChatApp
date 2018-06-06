@@ -151,7 +151,7 @@ public class SettingActivity extends AppCompatActivity {
                                     if(task.isSuccessful())
                                     {
                                         mProgressDialog.dismiss();
-                                        Toast.makeText(SettingActivity.this,"Uploading Successfully",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SettingActivity.this, R.string.uploaded_success,Toast.LENGTH_LONG).show();
 
                                     }
                                 }
@@ -159,7 +159,7 @@ public class SettingActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(SettingActivity.this,"failed",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SettingActivity.this, R.string.img_uploading_error,Toast.LENGTH_LONG).show();
 
                         }
                     }

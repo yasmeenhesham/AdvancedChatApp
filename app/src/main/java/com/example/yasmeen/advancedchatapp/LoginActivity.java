@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email= mLoginEmail.getEditText().getText().toString();
                 String password= mLoginPassword.getEditText().getText().toString();
-                if(!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password))
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))
                 {
                     mProgressDialog.setTitle(getString(R.string.logging_in));
                     mProgressDialog.setMessage(getString(R.string.please_wait));
@@ -93,12 +93,26 @@ public class LoginActivity extends AppCompatActivity {
                             // If sign in fails, display a message to the user.
                            // Log.w(TAG, "signInWithEmail:failure", task.getException());
                             mProgressDialog.hide();
-                            Toast.makeText(LoginActivity.this, "Login failed.",
+                            Toast.makeText(LoginActivity.this, R.string.failed_login,
                                     Toast.LENGTH_LONG).show();
                         }
 
                         // ...
                     }
                 });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("Email",mLoginEmail.getEditText().getText().toString());
+        outState.putString("Password",mLoginPassword.getEditText().getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mLoginEmail.getEditText().setText(savedInstanceState.getString("Email"));
+        mLoginPassword.getEditText().setText(savedInstanceState.getString("Password"));
     }
 }

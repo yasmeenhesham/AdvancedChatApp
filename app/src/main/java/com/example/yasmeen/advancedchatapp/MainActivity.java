@@ -31,18 +31,18 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mytoolbar=(Toolbar)findViewById(R.id.toolbar_main);
+        mytoolbar=findViewById(R.id.toolbar_main);
         setSupportActionBar(mytoolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
         FirebaseUser userr = mAuth.getCurrentUser();
         if(userr != null) {
             mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
         }
-        mViewPager= (ViewPager)findViewById(R.id.tabPager);
+        mViewPager= findViewById(R.id.tabPager);
         mSelectPagerAdapter =new SelectPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSelectPagerAdapter);
 
-        mTabLayout=(TabLayout)findViewById(R.id.main_tab);
+        mTabLayout=findViewById(R.id.main_tab);
         mTabLayout.setupWithViewPager(mViewPager);
 
     }
@@ -88,20 +88,15 @@ public class MainActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             uppdateUI();
         }
-        else if(id==R.id.account_setting_menu)
+        else if(id== R.id.account_setting_menu)
         {
             Intent settingIntnt= new Intent(MainActivity.this,SettingActivity.class);
             startActivity(settingIntnt);
         }
-        else if(id==R.id.alluser_menu)
+        else if(id== R.id.alluser_menu)
         {
             Intent allUsersIntent= new Intent(MainActivity.this,AllUsersActivity.class);
             startActivity(allUsersIntent);
-        }
-        else if(id==R.id.tasksActivity)
-        {
-            Intent intent = new Intent(MainActivity.this,TasksActivity.class);
-            startActivity(intent);
         }
         return true;
     }

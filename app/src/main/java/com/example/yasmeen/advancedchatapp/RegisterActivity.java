@@ -27,19 +27,19 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout mDisplayName;
     private TextInputLayout mEmail;
     private TextInputLayout mPassword;
-    private Button mregistButton;
+    Button mregistButton;
     private FirebaseAuth mAuth;
-    private Toolbar regToolBar;
+    Toolbar regToolBar;
     private ProgressDialog progressDialog;
     private DatabaseReference mDataRefereienc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        mDisplayName =(TextInputLayout)findViewById(R.id.regDisplayName);
-        mEmail=(TextInputLayout)findViewById(R.id.regEmail);
-        mPassword=(TextInputLayout)findViewById(R.id.regPassword);
-        mregistButton =(Button)findViewById(R.id.RegButton);
+        mDisplayName =findViewById(R.id.regDisplayName);
+        mEmail=findViewById(R.id.regEmail);
+        mPassword=findViewById(R.id.regPassword);
+        mregistButton =findViewById(R.id.RegButton);
         mAuth = FirebaseAuth.getInstance();
         mregistButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String password =mPassword.getEditText().getText().toString();
                 if(!TextUtils.isEmpty(name)|| !TextUtils.isEmpty(email)|| !TextUtils.isEmpty(password))
                 {
-                    progressDialog.setTitle("Registering User");
-                    progressDialog.setMessage("Please wait while we create your account");
+                    progressDialog.setTitle(getString(R.string.register_user));
+                    progressDialog.setMessage(getString(R.string.wait_create_account));
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
                     Register_New_User(name, email, password);
@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-        regToolBar =(Toolbar)findViewById(R.id.register_toolbar);
+        regToolBar =findViewById(R.id.register_toolbar);
         setSupportActionBar(regToolBar);
         getSupportActionBar().setTitle(getResources().getString(R.string.create_account));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -104,12 +104,28 @@ public class RegisterActivity extends AppCompatActivity {
                         // If sign in fails, display a message to the user.
                        // Log.w(TAG, "createUserWithEmail:failure", task.getException());
                         progressDialog.hide();
-                        Toast.makeText(RegisterActivity.this, "Cannot Sign Up , Please Check the form and try again",
+                        Toast.makeText(RegisterActivity.this, R.string.failed_signup,
                                 Toast.LENGTH_LONG).show();
                     }
 
                     // ...
                 }
             });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("Name",mDisplayName.getEditText().getText().toString());
+        outState.putString("Email",mEmail.getEditText().getText().toString());
+        outState.putString("Password",mPassword.getEditText().getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mDisplayName.getEditText().setText(savedInstanceState.getString("Name"));
+        mEmail.getEditText().setText(savedInstanceState.getString("Email"));
+        mPassword.getEditText().setText(savedInstanceState.getString("Password"));
     }
 }

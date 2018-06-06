@@ -58,7 +58,7 @@ public class ChatActivity extends AppCompatActivity {
     private List<Message>all_messages = new ArrayList<>();
     private MessagesAdapter messagesAdapter;
     Message m;
-    private static final int LIMITATION_MSG=50;
+    private static final int LIMITATION_MSG=10;
     private int current_page =1;
     private int item_Positin =0;
     private String mLastKey ="";
@@ -137,10 +137,12 @@ public class ChatActivity extends AppCompatActivity {
                     Map chatUserMap = new HashMap();
                     chatUserMap.put("Chat/"+mcurrentUserId+"/"+mChatUser.getUid(),chatAddMap);
                     chatUserMap.put("Chat/"+mChatUser.getUid()+"/"+mcurrentUserId,chatAddMap);
-                    mRoot.updateChildren(chatAddMap, new DatabaseReference.CompletionListener() {
+                    mRoot.updateChildren(chatUserMap, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                            Log.d("Chat_LOG",databaseError.getMessage().toString() );
+                            if(databaseError!=null) {
+                                Log.d("Chat_LOG", databaseError.getMessage().toString());
+                            }
 
                         }
                     });
@@ -184,12 +186,22 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("Msg",sentmessage.getText().toString());
+    }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        sentmessage.setText(savedInstanceState.getString("Msg"));
+    }
 
     private void loadMoreMessages() {
 
         DatabaseReference messageRef = mRoot.child("Messages").child(mcurrentUserId).child(mChatUser.getUid());
-        Query messageQuery = messageRef.orderByChild("time").orderByKey().endAt(mLastKey).limitToLast(10);
+        Query messageQuery = messageRef.orderByKey().endAt(mLastKey).limitToLast(10);
         messageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -232,7 +244,7 @@ public class ChatActivity extends AppCompatActivity {
     private void loadMessages()
     {
         DatabaseReference messageRef = mRoot.child("Messages").child(mcurrentUserId).child(mChatUser.getUid());
-        Query messageQuery = messageRef.orderByChild("time").limitToLast(current_page*LIMITATION_MSG);
+        Query messageQuery = messageRef.limitToLast(current_page*LIMITATION_MSG);
         messageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -240,10 +252,8 @@ public class ChatActivity extends AppCompatActivity {
 
                 String messageKey= dataSnapshot.getKey();
                 item_Positin++;
-                Long tsLong = System.currentTimeMillis();
                 if(!mPrevKey.equals(messageKey)) {
                     {
-                        if(tsLong>m.getTime())
                             all_messages.add(m);
                     }
                 } else {

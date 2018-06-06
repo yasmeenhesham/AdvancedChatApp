@@ -66,7 +66,7 @@ public class StatusActivity extends AppCompatActivity {
                                     mProgressDialog.dismiss();
                                 }
                                 else {
-                                    Toast.makeText(getApplicationContext(),"error while saving change please try again",
+                                    Toast.makeText(getApplicationContext(), R.string.status_error_saving,
                                             Toast.LENGTH_LONG).show();
                                 }
                             }

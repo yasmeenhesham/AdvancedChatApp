@@ -29,6 +29,8 @@ public class FriendRequestsFragment extends Fragment {
     String current_id;
     Users users;
     View reqView;
+    public ArrayList<String> test;
+
     ReqAdapter mReqAdapter ;
     public FriendRequestsFragment() {
         // Required empty public constructor
@@ -44,15 +46,18 @@ public class FriendRequestsFragment extends Fragment {
         recyclerView= (RecyclerView)reqView.findViewById(R.id.req_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mReqAdapter=new ReqAdapter(getContext(),req_list);
+        mReqAdapter=new ReqAdapter(getContext(),req_list,test);
         recyclerView.setAdapter(mReqAdapter);
         mauth = FirebaseAuth.getInstance();
         current_id = mauth.getCurrentUser().getUid();
         mReqRef = FirebaseDatabase.getInstance().getReference().child("Friend_Req");
-
+        test = new ArrayList<>();
         //req_list.clear();
         //mReqAdapter.notifyDataSetChanged();
         mUserRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        //final ArrayList<String> test = new ArrayList<>();
+        //test.add("test");
+       // UpdateBakingService.startBakingService(getContext(),test);
         mReqRef.child(current_id).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -64,8 +69,20 @@ public class FriendRequestsFragment extends Fragment {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             users = dataSnapshot.getValue(Users.class);
+                            users.setUid(dataSnapshot.getKey());
+                            test.add(users.getName());
+                            if(getActivity()!=null) {
+                                UpdateBakingService.startBakingService(getActivity().getApplicationContext()
+                                        , test);
+                            }
                             req_list.add(users);
                             mReqAdapter.notifyDataSetChanged();
+                            //UpdateReqService.startBakingService(getContext(),req_list);
+
+                            //Intent intent = new Intent(getActivity().getApplicationContext(), UpdateReqService.class);
+                            //getActivity().getApplicationContext().stopService(intent);
+                          //  intent.putExtra(FROM_ACTIVITY_INGREDIENTS_LIST, (Serializable) fromActivityIngredientsList);
+
                         }
 
                         @Override
@@ -73,6 +90,7 @@ public class FriendRequestsFragment extends Fragment {
 
                         }
                     });
+
                 }
 
 
@@ -106,7 +124,10 @@ public class FriendRequestsFragment extends Fragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }*/
+        //UpdateReqService.startBakingService(getContext(),req_list);
+
         return reqView;
+
     }
 
 }

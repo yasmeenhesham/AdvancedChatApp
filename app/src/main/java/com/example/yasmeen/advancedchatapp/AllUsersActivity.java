@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -50,8 +48,8 @@ public class AllUsersActivity extends AppCompatActivity {
                 users.setUid(dataSnapshot.getKey().toString());
                 lst.add(users);
                 mAdapter.notifyDataSetChanged();
-                Log.e("A", "onChildAdded: "+ users.getName() );
-                Toast.makeText(AllUsersActivity.this, ""+users.getImage(), Toast.LENGTH_SHORT).show();
+               // Log.e("A", "onChildAdded: "+ users.getName() );
+                //Toast.makeText(AllUsersActivity.this, ""+users.getImage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

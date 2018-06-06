@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,10 +11,18 @@
         android:layout_height="34dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
-        android:text="Decline"
-        android:textSize="10sp" />
+        android:text="@string/decline"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/req_accept"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,SmallSp" />
 
     <ImageView
         android:id="@+id/req_image"
@@ -21,10 +30,12 @@
         android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        android:contentDescription="@string/requester_img" />
 
     <TextView
         android:id="@+id/req_name"
@@ -32,22 +43,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="25dp"
-        android:text="Display Name"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        tools:text="@string/display_name"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        android:textStyle="bold" />
-a
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/req_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/req_status"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/req_name"
-        android:layout_marginTop="50dp"
-        android:text="Default User Status"
-        android:textSize="10sp" />
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
+        tools:text="Default User Status"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/req_image"
+        app:layout_constraintStart_toStartOf="@+id/req_name"
+        app:layout_constraintTop_toBottomOf="@+id/req_name"
+        tools:ignore="SmallSp" />
 
     <Button
         android:id="@+id/req_accept"
@@ -55,11 +73,17 @@ a
         android:layout_height="34dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
-        android:text="Accept"
+        android:text="@string/accept"
         android:textColor="@android:color/background_light"
-        android:textSize="10sp" />
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/req_status"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

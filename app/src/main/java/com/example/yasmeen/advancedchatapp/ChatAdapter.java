@@ -23,7 +23,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         private static List<Users> users= new ArrayList<>();
         private LayoutInflater mInflater;
         private Context mContext;
-        private Users  y;
+        private Users y;
 
         public ChatAdapter(Context context, List<Users> m) {
             this.mContext = context;

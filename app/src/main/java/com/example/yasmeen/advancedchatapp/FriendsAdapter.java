@@ -25,7 +25,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.UsersVie
     private static List<Users> users= new ArrayList<>();
     private LayoutInflater mInflater;
     private Context mContext;
-    private Users  y;
+    private Users y;
 
     public FriendsAdapter(Context context, List<Users> m) {
         this.mContext = context;

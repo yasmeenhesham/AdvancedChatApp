@@ -12,8 +12,9 @@
         android:layout_height="36dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="10dp"
-        app:srcCompat="@drawable/user_icon" />
+        android:layout_marginEnd="10dp"
+        app:srcCompat="@drawable/user_icon"
+        android:contentDescription="@string/chat_user_img" />
 
     <TextView
         android:id="@+id/custom_bar_name"
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Display Name"
+        android:text="@string/display_name"
         android:textColor="@android:color/background_light"
         android:textSize="18sp" />
 
@@ -31,6 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/custom_bar_name"
-        android:text="TextView"
+        tools:text="TextView"
         android:textColor="@android:color/background_light" />
 </RelativeLayout>

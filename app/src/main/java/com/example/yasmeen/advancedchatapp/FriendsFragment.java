@@ -40,7 +40,7 @@ public class FriendsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mView= inflater.inflate(R.layout.fragment_friends, container, false);
-        mfrindsList =(RecyclerView)mView.findViewById(R.id.friends_list);
+        mfrindsList =(RecyclerView) mView.findViewById(R.id.friends_list);
         mAuth = FirebaseAuth.getInstance();
         current_user = mAuth.getCurrentUser().getUid();
         final List<Friends> friends = new ArrayList<>();
