@@ -29,8 +29,7 @@ public class FriendRequestsFragment extends Fragment {
     String current_id;
     Users users;
     View reqView;
-    public ArrayList<String> test;
-
+    List<String>names;
     ReqAdapter mReqAdapter ;
     public FriendRequestsFragment() {
         // Required empty public constructor
@@ -46,18 +45,14 @@ public class FriendRequestsFragment extends Fragment {
         recyclerView= (RecyclerView)reqView.findViewById(R.id.req_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mReqAdapter=new ReqAdapter(getContext(),req_list,test);
+        names=new ArrayList<>();
+        mReqAdapter=new ReqAdapter(getContext(),req_list,names);
         recyclerView.setAdapter(mReqAdapter);
         mauth = FirebaseAuth.getInstance();
         current_id = mauth.getCurrentUser().getUid();
         mReqRef = FirebaseDatabase.getInstance().getReference().child("Friend_Req");
-        test = new ArrayList<>();
-        //req_list.clear();
-        //mReqAdapter.notifyDataSetChanged();
         mUserRef = FirebaseDatabase.getInstance().getReference().child("Users");
-        //final ArrayList<String> test = new ArrayList<>();
-        //test.add("test");
-       // UpdateBakingService.startBakingService(getContext(),test);
+
         mReqRef.child(current_id).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -70,18 +65,13 @@ public class FriendRequestsFragment extends Fragment {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             users = dataSnapshot.getValue(Users.class);
                             users.setUid(dataSnapshot.getKey());
-                            test.add(users.getName());
+                            names.add(users.getName());
                             if(getActivity()!=null) {
                                 UpdateBakingService.startBakingService(getActivity().getApplicationContext()
-                                        , test);
+                                        , names);
                             }
                             req_list.add(users);
                             mReqAdapter.notifyDataSetChanged();
-                            //UpdateReqService.startBakingService(getContext(),req_list);
-
-                            //Intent intent = new Intent(getActivity().getApplicationContext(), UpdateReqService.class);
-                            //getActivity().getApplicationContext().stopService(intent);
-                          //  intent.putExtra(FROM_ACTIVITY_INGREDIENTS_LIST, (Serializable) fromActivityIngredientsList);
 
                         }
 

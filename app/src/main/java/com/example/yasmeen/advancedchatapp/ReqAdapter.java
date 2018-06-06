@@ -31,25 +31,23 @@ public class ReqAdapter  extends RecyclerView.Adapter<ReqAdapter.ReqViewHolder>{
     private static List<Users> users= new ArrayList<>();
     private LayoutInflater mInflater;
     private Context mContext;
-    private Users y;
+    private Users  y;
     private FirebaseAuth mAuth;
     private DatabaseReference mReq_Ref ;
     private DatabaseReference mDatabaseRefRoot;
     private String current_user ;
-    private ArrayList<String>names = new ArrayList<>();
+    private List<String>names = new ArrayList<>();
 
 
-    public ReqAdapter(Context mContext, List<Users>m , ArrayList<String>names) {
+    public ReqAdapter(Context mContext, List<Users>m , List<String>names) {
         this.mContext = mContext;
         this.mInflater = LayoutInflater.from(mContext);
         this.users = m;
         this.names= names;
         mAuth = FirebaseAuth.getInstance();
         mReq_Ref = FirebaseDatabase.getInstance().getReference().child("Friend_Req");
-        //mFriend_Ref = FirebaseDatabase.getInstance().getReference().child("Friends");
         current_user= mAuth.getCurrentUser().getUid();
         mReq_Ref = FirebaseDatabase.getInstance().getReference().child("Friend_Req");
-       // mFriend_Ref =FirebaseDatabase.getInstance().getReference().child("Friends");
         mDatabaseRefRoot = FirebaseDatabase.getInstance().getReference();
 
     }
@@ -87,24 +85,11 @@ public class ReqAdapter  extends RecyclerView.Adapter<ReqAdapter.ReqViewHolder>{
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
-            /*itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    int position=getLayoutPosition();
-                    Users u= users.get(position);
-                    Intent intent = new Intent(itemView.getContext(),ProfileActivity.class);
-                    intent.putExtra("User",(Serializable) u);
-                    itemView.getContext().startActivity(intent);
-                }
-            });*/
             acceptBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     final int position = getLayoutPosition();
                     Users u = users.get(position);
-                    //mReq_Ref.child(current_user).child(u.getUid()).removeValue();
-                    //mReq_Ref.child(u.getUid()).child(current_user).removeValue();
                     final String currentDate = DateFormat.getDateInstance().format(new Date());
                     Map friendsMap = new HashMap();
                     friendsMap.put("Friends/"+current_user+"/"+y.getUid()+"/date",currentDate);
@@ -118,6 +103,7 @@ public class ReqAdapter  extends RecyclerView.Adapter<ReqAdapter.ReqViewHolder>{
                             {
                                 users.remove(position);
                                 names.remove(position);
+
                                 UpdateBakingService.startBakingService(mContext,names);
                                 notifyDataSetChanged();
                                 Toast.makeText(itemView.getContext(), R.string.added_success, Toast.LENGTH_SHORT).show();
@@ -142,6 +128,7 @@ public class ReqAdapter  extends RecyclerView.Adapter<ReqAdapter.ReqViewHolder>{
                             if(databaseError == null)
                             {
                                 users.remove(position);
+                                names.remove(position);
                                 notifyDataSetChanged();
                                 UpdateBakingService.startBakingService(mContext,names);
                                 Toast.makeText(itemView.getContext(), R.string.decline_success, Toast.LENGTH_SHORT).show();
@@ -151,12 +138,6 @@ public class ReqAdapter  extends RecyclerView.Adapter<ReqAdapter.ReqViewHolder>{
                 }
             });
 
-           /* acceptBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mFriend_Ref
-                }
-            });*/
         }
         public void SetUser(Users user){
             name.setText(user.getName());

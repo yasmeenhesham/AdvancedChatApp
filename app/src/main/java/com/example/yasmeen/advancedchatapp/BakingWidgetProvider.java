@@ -18,9 +18,6 @@ public class BakingWidgetProvider extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_gridview);
-        // openActivity.addCategory(Intent.ACTION_MAIN);
-        // openActivity.addCategory(Intent.CATEGORY_LAUNCHER);
-        // openActivity.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         Intent intent = new Intent(context, BakingWidgetService.class);
         views.setRemoteAdapter(R.id.widget_grid_view, intent);
         Intent openActivity = new Intent(context, MainActivity.class);
