@@ -46,7 +46,7 @@ public class BakingWidgetProvider extends AppWidgetProvider {
 
         final String action = intent.getAction();
 
-        if (action.equals("android.appwidget.action.APPWIDGET_UPDATE")||action.equals("android.appwidget.action.APPWIDGET_ENABLED")) {
+        if (action.equals("android.appwidget.action.APPWIDGET_UPDATE")) {
             ingredientsList = (List<String>) intent.getExtras().get("FROM_ACTIVITY_INGREDIENTS_LIST");
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_grid_view);
             //Now update all widgets
