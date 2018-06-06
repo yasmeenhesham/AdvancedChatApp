@@ -48,10 +48,12 @@ public class BakingWidgetProvider extends AppWidgetProvider {
 
         if (action.equals("android.appwidget.action.APPWIDGET_UPDATE")) {
             ingredientsList = (List<String>) intent.getExtras().get("FROM_ACTIVITY_INGREDIENTS_LIST");
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_grid_view);
-            //Now update all widgets
-            BakingWidgetProvider.updateBakingWidgets(context, appWidgetManager, appWidgetIds);
-            super.onReceive(context, intent);
+            if(ingredientsList!=null) {
+                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_grid_view);
+                //Now update all widgets
+                BakingWidgetProvider.updateBakingWidgets(context, appWidgetManager, appWidgetIds);
+                super.onReceive(context, intent);
+            }
         }
     }
 

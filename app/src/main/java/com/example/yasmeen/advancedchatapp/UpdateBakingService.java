@@ -38,7 +38,8 @@ public class UpdateBakingService extends IntentService {
     public static void startBakingService(Context context, List<String> fromActivityIngredientsList) {
         Intent intent = new Intent(context, UpdateBakingService.class);
         intent.putExtra(FROM_ACTIVITY_INGREDIENTS_LIST, (Serializable) fromActivityIngredientsList);
-        context.startService(intent);
+        if(fromActivityIngredientsList!=null)
+         context.startService(intent);
     }
     private void handleActionUpdateBakingWidgets(List<String> fromActivityIngredientsList) {
         Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
