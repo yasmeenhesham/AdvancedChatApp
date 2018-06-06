@@ -98,6 +98,11 @@ public class MainActivity extends AppCompatActivity {
             Intent allUsersIntent= new Intent(MainActivity.this,AllUsersActivity.class);
             startActivity(allUsersIntent);
         }
+        else if(id==R.id.tasksActivity)
+        {
+            Intent intent = new Intent(MainActivity.this,TasksActivity.class);
+            startActivity(intent);
+        }
         return true;
     }
 

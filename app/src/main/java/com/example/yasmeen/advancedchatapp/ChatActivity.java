@@ -58,7 +58,7 @@ public class ChatActivity extends AppCompatActivity {
     private List<Message>all_messages = new ArrayList<>();
     private MessagesAdapter messagesAdapter;
     Message m;
-    private static final int LIMITATION_MSG=10;
+    private static final int LIMITATION_MSG=50;
     private int current_page =1;
     private int item_Positin =0;
     private String mLastKey ="";
@@ -189,7 +189,7 @@ public class ChatActivity extends AppCompatActivity {
     private void loadMoreMessages() {
 
         DatabaseReference messageRef = mRoot.child("Messages").child(mcurrentUserId).child(mChatUser.getUid());
-        Query messageQuery = messageRef.orderByKey().endAt(mLastKey).limitToLast(10);
+        Query messageQuery = messageRef.orderByChild("time").orderByKey().endAt(mLastKey).limitToLast(10);
         messageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -232,17 +232,20 @@ public class ChatActivity extends AppCompatActivity {
     private void loadMessages()
     {
         DatabaseReference messageRef = mRoot.child("Messages").child(mcurrentUserId).child(mChatUser.getUid());
-        Query messageQuery = messageRef.limitToLast(current_page*LIMITATION_MSG);
+        Query messageQuery = messageRef.orderByChild("time").limitToLast(current_page*LIMITATION_MSG);
         messageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 m = dataSnapshot.getValue(Message.class);
+
                 String messageKey= dataSnapshot.getKey();
                 item_Positin++;
-
+                Long tsLong = System.currentTimeMillis();
                 if(!mPrevKey.equals(messageKey)) {
-
-                    all_messages.add(m);
+                    {
+                        if(tsLong>m.getTime())
+                            all_messages.add(m);
+                    }
                 } else {
                     mPrevKey =messageKey;
                 }
