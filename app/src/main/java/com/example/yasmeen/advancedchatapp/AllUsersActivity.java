@@ -29,7 +29,7 @@ public class AllUsersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_users);
         mToolbar = (Toolbar)findViewById(R.id.allusers_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("All Users");
+        getSupportActionBar().setTitle(R.string.all_users);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final List<Users> lst = new ArrayList<>();
         mRecyclerView = (RecyclerView)findViewById(R.id.alluser_recycler);

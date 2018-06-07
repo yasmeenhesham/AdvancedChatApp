@@ -33,7 +33,7 @@ public class StatusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_status);
         mToolbar =(Toolbar)findViewById(R.id.status_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Account Status");
+        getSupportActionBar().setTitle(R.string.account_status);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent sendIntent = getIntent();
@@ -52,8 +52,8 @@ public class StatusActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mProgressDialog.setTitle("Saving Changes");
-                mProgressDialog.setMessage("Please Wait A Moment");
+                mProgressDialog.setTitle(R.string.save_changes);
+                mProgressDialog.setMessage(getString(R.string.please_wait_amoment));
                 mProgressDialog.show();
 
                 String newStatus= mStatus.getEditText().getText().toString();
@@ -75,5 +75,17 @@ public class StatusActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("status",mStatus.getEditText().getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mStatus.getEditText().setText(savedInstanceState.getString("status"));
     }
 }

@@ -1,12 +1,16 @@
 package com.example.yasmeen.advancedchatapp;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 class SelectPagerAdapter extends FragmentPagerAdapter{
-    public SelectPagerAdapter(FragmentManager fm) {
+    Context context;
+    public SelectPagerAdapter(FragmentManager fm, Context context) {
+
         super(fm);
+        this.context=context;
     }
 
     @Override
@@ -39,11 +43,11 @@ class SelectPagerAdapter extends FragmentPagerAdapter{
         switch (position)
         {
             case 0:
-                return "Requests";
+                return context.getString(R.string.requests);
             case 1:
-                return "Chat";
+                return context.getString(R.string.chat);
             case 2:
-                return "Friends";
+                return context.getString(R.string.friends);
             default:
                 return null;
         }

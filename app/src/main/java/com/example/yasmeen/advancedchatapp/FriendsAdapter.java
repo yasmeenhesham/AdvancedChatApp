@@ -69,9 +69,9 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.UsersVie
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CharSequence opthions[] = new CharSequence[]{"Open Profile","Send Message"};
+                    CharSequence opthions[] = new CharSequence[]{mContext.getString(R.string.open_profile),mContext.getString(R.string.send_message)};
                     AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-                    builder.setTitle("Select Options");
+                    builder.setTitle(mContext.getString(R.string.select_option));
                     builder.setItems(opthions, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

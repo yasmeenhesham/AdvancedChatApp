@@ -108,7 +108,7 @@ public class SettingActivity extends AppCompatActivity {
                 Intent gallaryIntent = new Intent();
                 gallaryIntent.setType("image/*");
                 gallaryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(gallaryIntent,"Select Image"),GALLARY_PICK);
+                startActivityForResult(Intent.createChooser(gallaryIntent,getString(R.string.select_img)),GALLARY_PICK);
             }
         });
     }
@@ -131,8 +131,8 @@ public class SettingActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
                 mProgressDialog = new ProgressDialog(SettingActivity.this);
-                mProgressDialog.setTitle("Uploading Image...");
-                mProgressDialog.setMessage("Please wait a moment");
+                mProgressDialog.setTitle(getString(R.string.uploding_img));
+                mProgressDialog.setMessage(getString(R.string.please_wait_amoment));
                 mProgressDialog.setCanceledOnTouchOutside(false);
                 mProgressDialog.show();
 
